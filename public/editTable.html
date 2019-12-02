@@ -51,7 +51,7 @@
 
         //llấy dữ liệu cũ từư bảng để hiệnr thị
         function editList(n) {
-            axios.get(`https://data-table-json.herokuapp.com/users/${n}`)
+            axios.get(`http://localhost:3000/users/${n}`)
                 .then(resp => {
                     console.log(resp);
                     data = resp.data;
@@ -65,7 +65,7 @@
         };
         //cho phép cập nhật tohong tin người dùng
         function addList() {
-            axios.put(`https://data-table-json.herokuapp.com/users/${userId}`, {
+            axios.put(`http://localhost:3000/users/${userId}`, {
                 name: $("#name").val(),
                 year: $("#age").val(),
                 email: $("#email").val(),

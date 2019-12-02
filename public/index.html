@@ -119,7 +119,7 @@
     <script>
       // Make a request for a user with a given ID
       axios
-        .get("https://data-table-json.herokuapp.com/users")
+        .get("http://localhost:3000/users")
         .then(function(response) {
           // handle success
           var s = response.data;
@@ -156,7 +156,7 @@
         var checkConfirm = confirm("Bạn có muốn xóa không ?");
         if (checkConfirm) {
           axios
-            .delete(`https://data-table-json.herokuapp.com/users/${getId}`)
+            .delete(`http://localhost:3000/users/${getId}`)
             //  xóa xong thì k cho reload lại trang
             .then(function(response) {
               $(removeB)
@@ -198,7 +198,7 @@
             $checked.each(function() {
               axios({
                 method: "DELETE",
-                url: "https://data-table-json.herokuapp.com/users/" + this.value
+                url: "http://localhost:3000/users/" + this.value
               });
               $(this)
                 .parent()
@@ -223,40 +223,6 @@
         );
       }
       // end tìm kiếm trong bảng
-      // phân trang
-      $(document).ready(function() {
-        $("#table").after('<div id="nav"></div>');
-        var rowsShown = 5;
-        var rowsTotal = $("#table tbody tr").length;
-        var numPages = rowsTotal / rowsShown;
-        for (i = 0; i < numPages; i++) {
-          var pageNum = i + 1;
-          $("#nav").append('<a href="#" rel="' + i + '">' + pageNum + "</a> ");
-        }
-        $("#table tbody tr").hide();
-        $("#table tbody tr")
-          .slice(0, rowsShown)
-          .show();
-        $("#nav a:first").addClass("active");
-        $("#nav a").bind("click", function() {
-          $("#nav a").removeClass("active");
-          $(this).addClass("active");
-          var currPage = $(this).attr("rel");
-          var startItem = currPage * rowsShown;
-          var endItem = startItem + rowsShown;
-          $("#table tbody tr")
-            .css("opacity", "0.0")
-            .hide()
-            .slice(startItem, endItem)
-            .css("display", "table-row")
-            .animate(
-              {
-                opacity: 1
-              },
-              300
-            );
-        });
-      });
     </script>
   </body>
 </html>

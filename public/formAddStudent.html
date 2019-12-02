@@ -44,7 +44,7 @@
     <script>
         //tạo mới các dữ liệu thông tin
         function createData() {
-            axios.post('https://data-table-json.herokuapp.com/users', {
+            axios.post('http://localhost:3000/users', {
                     "name": document.getElementById("name").value,
                     "year": document.getElementById("age").value,
                     "email": document.getElementById("email").value,
